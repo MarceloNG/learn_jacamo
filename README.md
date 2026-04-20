@@ -19,7 +19,20 @@ Este projeto é um **laboratório vivo** — comece pela execução e evolua gra
 ### Pré-requisitos
 
 - Java 11+
-- Gradle (ou use o wrapper `./gradlew`)
+- JaCaMo instalado: siga o [Getting Started oficial](https://jacamo-lang.github.io/getting-started)
+
+### Configurar o Gradle Wrapper (primeira vez)
+
+O `gradle-wrapper.jar` não está rastreado no git (arquivo binário). Restaure-o com:
+
+```bash
+# Opção 1: via Gradle (se instalado)
+gradle wrapper --gradle-version 8.10
+
+# Opção 2: via wget
+wget -q "https://github.com/gradle/gradle/raw/v8.10.0/gradle/wrapper/gradle-wrapper.jar" \
+     -O gradle/wrapper/gradle-wrapper.jar
+```
 
 ### Executar o projeto
 
