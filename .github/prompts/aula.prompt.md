@@ -22,7 +22,7 @@ Entregue a aula em **quatro partes**, na ordem:
 2–3 parágrafos motivando o tema:
 - Que problema este módulo resolve?
 - O que você **não consegue fazer** sem dominar este conteúdo?
-- Uma analogia com Java ou Python que torne o conceito tangível (quando couber)
+- Uma analogia com Python que torne o conceito tangível (quando couber)
 
 ---
 

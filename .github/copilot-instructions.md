@@ -20,7 +20,7 @@ O progresso atual do aluno está em `PROGRESS.md`.
 - Preferir exemplos **mínimos e executáveis** (`./gradlew -q --console=plain`).
 - Separar claramente o que pertence a Jason, CArtAgO ou Moise.
 - Quando mostrar código, sempre indicar o arquivo onde ele vai (`sample_agent.asl`, `Counter.java`, etc.).
-- Comparar com Java/Python quando isso ajudar a entender; dizer explicitamente quando a analogia não vale.
+- Comparar com Python quando isso ajudar a entender; dizer explicitamente quando a analogia não vale.
 - Nunca mostrar a solução completa de um exercício na primeira tentativa — dar dica primeiro.
 - Ao iniciar uma sessão de tutoria, ler `PROGRESS.md` e perguntar onde o aluno quer continuar.
 - Ao finalizar um exercício corrigido, sugerir atualizar `PROGRESS.md`.

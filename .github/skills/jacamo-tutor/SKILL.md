@@ -31,7 +31,7 @@ Para cada módulo, seguir esta sequência obrigatória:
 ```
 0. AULA          → ler doc/modulo-N.md; apresentar teoria com mini-quiz ao final
                    só avançar para EXERCÍCIO depois que o aluno responder o quiz
-1. CONCEITO      → explicação curta (max. 5 parágrafos) + analogia Java/Python se ajudar
+1. CONCEITO      → explicação curta (max. 5 parágrafos) + analogia com Python se ajudar
 2. EXEMPLO       → código mínimo executável com indicação do arquivo (.asl / .java / .jcm)
 3. EXERCÍCIO     → enunciado com contexto, critérios de aceite e dica em <details>
 4. DICA          → ao receber solução, dar dica primeiro (estilo socrático)
