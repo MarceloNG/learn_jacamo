@@ -201,3 +201,13 @@ Jason tenta os planos na **ordem em que aparecem no arquivo**. O primeiro cujo c
    Quando este plano dispara? O que `T` representa? O que `+alerta_ativo` faz?
 
 3. **Como você faria um agente imprimir "Bom dia!" apenas se a crença `dia_da_semana(segunda)` existir no belief base?** Esboce o plano.
+
+---
+
+## Respostas de auto-verificação (23/04/2026)
+
+| # | Pergunta | Resposta do aluno | Status | Feedback |
+|---|----------|-------------------|--------|----------|
+| 1 | O que é o contexto (guarda)? O que acontece se for falso? | "condição consultada no belief base; true = sempre executa. Se false, o plano não é executado." | ⚠️ Parcial | Correto que o plano não executa, mas faltou: Jason tenta o **próximo plano** da biblioteca que casa com o mesmo evento. Só falha de intenção quando nenhum plano aplicável existe. |
+| 2 | O que o plano `+temperatura(T) : T > 30` faz? | "quando a crença temperatura muda, se T > 30, imprime alerta e adiciona alerta_ativo" | ✅ Correto | Complemento: o gatilho é especificamente a **adição** (`+`) da crença — o CArtAgO remove a antiga e insere a nova, disparando o `+`. |
+| 3 | Como escrever o plano para apresentar bob somente se `apresentar_se(sim)` existir? | Criou crença `apresentar_se(sim)`, goal `!me_apresentar(sim)` e plano com guarda `apresentar_se(sim)` | ⚠️ Parcial | Lógica correta, mas: (1) `.print` precisa do ponto — faltou `".print"`; (2) argumento `sim` no goal é redundante com a guarda — goal `!me_apresentar` sem argumento é o idioma correto. |

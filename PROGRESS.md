@@ -1,8 +1,8 @@
 ## Módulo atual
 
-- **Módulo:** 1 — Estrutura do projeto JaCaMo
-- **Status:** Exercício de consolidação ✅ Aprovado — Módulo 1 concluído
-- **Anterior:** Módulo 0 — ✅ Concluído
+- **Módulo:** 2 — Agentes: Beliefs, Goals e Plans (Jason/AgentSpeak)
+- **Status:** Quiz da aula concluído ✅ (1 correto, 2 parciais — aprovado)
+- **Anterior:** Módulo 1 — ✅ Concluído
 
 ## Histórico de exercícios
 
@@ -14,6 +14,7 @@
 | 1      | conceitual    | Quiz da aula: instâncias independentes, focus, beliefs iniciais | ✅ 3/3 corretas                                                  | 23/04/2026 |
 | 1      | intro         | Segundo artefato `c2` no workspace + `focus` diferente para alice e bob | ✅ Aprovado | 23/04/2026 |
 | 1      | consolidação  | MAS com 3 agentes, 2 artefatos, `focused-by`, `goals:` e `worker.asl`   | ✅ Aprovado | 23/04/2026 |
+| 2      | conceitual    | Quiz da aula: guarda de plano, gatilho de crença, plano com condição inicial | ✅ Q2 correta; Q1 e Q3 parciais (2/3 aprovado) | 23/04/2026 |
 
 ## Observações do tutor
 
@@ -47,3 +48,9 @@
 - Ponto de destaque: `focused-by` dentro do bloco do artefato vs `focus:` no bloco do agente — distinção importante
 - Ponto de atenção: `goals:` no `.jcm` não pode remover goals declarados no `.asl`; para controlar comportamento por instância, a abordagem idiomática é usar arquivos `.asl` distintos
 - Módulo 1 concluído ✅ — pronto para Módulo 2 (Agentes: Beliefs, Goals e Plans)
+
+**Módulo 2 — quiz da aula (23/04/2026)**
+- Q1 (contexto/guarda): ⚠️ parcial — correto que plano não executa, mas faltou que Jason tenta o próximo plano aplicável antes de falhar
+- Q2 (gatilho de crença `+temperatura(T)`): ✅ correto — identificou disparador, guarda, print e adição de crença
+- Q3 (plano com crença inicial): ⚠️ parcial — lógica correta, mas faltou ponto em `.print` e argumento no goal era redundante com a guarda
+- Próximo passo: exercício intro do Módulo 2
