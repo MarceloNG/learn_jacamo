@@ -14,12 +14,26 @@
 
 mas learn_jacamo {
 
+    // ── DIMENSÃO AGENTE ──────────────────────────────────────────────────────
+    // "bob" é o nome do agente. Seu raciocínio está em sample_agent.asl.
+    // "focus: w.c1" significa: bob observa o artefato chamado "c1"
+    //   no workspace "w". Toda propriedade observável de c1 vira crença de bob.
+    //   Ex: defineObsProperty("count", 3) → bob recebe count(3) no belief base.
     agent bob: sample_agent.asl {
-      focus: w.c1 
+      focus: w.c1    // observa o contador principal → crença count(N)
     }
 
+    // ── DIMENSÃO AMBIENTE ────────────────────────────────────────────────────
+    // Um workspace é um espaço compartilhado onde artefatos vivem.
+    // Artefatos são os "objetos do ambiente" que os agentes podem observar e operar.
+    //
+    // Sintaxe:  artifact <nome_instância>: <pacote.Classe>(<args_do_init>)
+    //                     │                │               │
+    //                     │                │               passado para Counter.init(int)
+    //                     │                classe Java em src/env/example/Counter.java
+    //                     nome local — usado em "focus: w.<nome_instância>"
     workspace w {
-      artifact c1: example.Counter(3) 
+      artifact c1: example.Counter(3)   // instância "c1" — valor inicial 3
     }
 
     organisation o: org.xml {

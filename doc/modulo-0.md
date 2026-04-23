@@ -117,6 +117,8 @@ mas learn_jacamo {
 }
 ```
 
+> **Nota importante:** Caso um segundo artefato do mesmo tipo (ex.: outro `Counter`) seja adicionado ao workspace, ambos exporiam a propriedade `count`. Isso causaria um conflito no belief base do agente `bob`, pois ele receberia múltiplas crenças `count(N)` (ex.: `count(3)` e `count(10)`) sem distinção de origem. Para evitar esse problema, é necessário diferenciar as propriedades ou usar nomes únicos para cada artefato.
+
 Mesmo neste projeto mínimo, as três dimensões já estão presentes. Nos módulos seguintes, cada uma será aprofundada separadamente.
 
 ---
@@ -142,3 +144,110 @@ Responda antes de usar `/exercicio 0`. Sem olhar as respostas — discuta com `@
 2. **Por que separar agente, ambiente e organização em arquivos diferentes?** O que você perderia se tudo estivesse num único arquivo Java?
 
 3. **No arquivo `learn_jacamo.jcm`, o que significa `focus: w.c1`?** O que acontece se remover essa linha?
+
+---
+
+## Respostas de auto-verificação
+
+| # | Pergunta (resumo) | Resposta do aluno (resumo) | Status | Feedback do tutor | Data |
+|---|-------------------|---------------------------|--------|-------------------|------|
+| 1 | Diferença Belief vs Intention; exemplo cotidiano | Belief = visão parcial do mundo; Desire = objetivos; Intention = Desire comprometido/ativo em execução. Destacou: agente pode ter muitos Desires mas poucas Intentions ativas | ⚠️ | Conceito correto e bem articulado; faltou fornecer exemplo cotidiano explícito para cada componente | 23/04/2026 |
+| 2 | Por que separar em arquivos? O que se perde sem separação? | Separação de responsabilidades, independência de alteração/reuso, possibilidade de rodar em processos separados | ✅ | Completo — capturou os três benefícios principais | 23/04/2026 |
+| 3 | O que é `focus: w.c1`? O que acontece sem ela? | O agente passa a reconhecer o artefato e ver suas propriedades | ⚠️ | Parcialmente correto — identificou percepção do artefato, mas não articulou que sem `focus` os percepts (ex: `count(N)`) não viram crenças no belief base, tornando planos dependentes de `count(N)` inoperantes | 23/04/2026 |
+
+---
+
+## Sintaxe AgentSpeak — referência rápida
+
+### Crença inicial
+
+```jason
+modulo_atual(0).
+//  ↑            ↑
+//  nome(valor)  ponto final obrigatório
+//  constantes/nomes = minúscula
+//  valores = números, átomos (minúscula) ou estruturas
+```
+
+### Objetivo inicial
+
+```jason
+!start.
+// "!" = goal (objetivo)
+// disparado automaticamente ao criar o agente
+```
+
+### Anatomia de um plano
+
+```
++  !  start  :  modulo_atual(Mod)  <-  ação1 ;  ação2 .
+│  │  │      │  │                  │        │        │
+│  │  nome   │  contexto guarda    │   sep. │     fim plano
+│  goal      separador             corpo
+gatilho (+adição)
+```
+
+| Símbolo | Papel | Quando usar |
+|---|---|---|
+| `+` no cabeçalho | Gatilho de adição de evento | Sempre em planos reativos |
+| `!` | Marca que o evento é um goal | Goals usam `!`, crenças não |
+| `:` | Separador de contexto | Divide cabeçalho do corpo |
+| `true` | Contexto sem condição | Quando o plano sempre pode rodar |
+| `crença(Var)` | Contexto com consulta | Lê e liga variável ao mesmo tempo |
+| `<-` | Início do corpo do plano | Separa guarda das ações |
+| `;` | Separador de ações | Entre cada ação (exceto a última) |
+| `.` | Fim do plano | Na última ação do corpo |
+| `+crença(...)` no corpo | Adiciona crença ao belief base | Memorizar algo persistente |
+
+### Variáveis vs. constantes
+
+```jason
+modulo_atual(0).    // 0 = constante numérica
+modulo_atual(abc).  // abc = constante átomo (minúscula)
+modulo_atual(Mod).  // Mod = VARIÁVEL (maiúscula) — ligada ao valor ao consultar
+```
+
+---
+
+## Erros comuns e correções
+
+### ❌ Crença com variável não ligada
+
+```jason
+// ERRADO: variáveis não podem aparecer em crenças iniciais
+M = 0.
+modulo_atual(M).
+
+// CERTO: fato concreto com valor literal
+modulo_atual(0).
+```
+
+### ❌ Ponto antes do nome (ação interna)
+
+```jason
+// ERRADO: ".nome" = ação interna Jason (como .print, .date)
+.modulo_atual(0).
+
+// CERTO: crença inicial não tem ponto no início
+modulo_atual(0).
+```
+
+### ❌ Conflito de variável
+
+```jason
+// ERRADO: M usada como módulo E como Mês em .date(Y,M,D)
++!start : modulo_atual(M) <- .date(Y,M,D).
+
+// CERTO: nomes distintos para cada variável
++!start : modulo_atual(Mod) <- .date(Year,Mon,Day).
+```
+
+---
+
+## Exercícios realizados
+
+| Nível | Tarefa | Resultado | Data |
+|---|---|---|---|
+| intro | Declarar `modulo_atual(0)` e imprimir o valor via plano `+!start` | ✅ | 22/04/2026 |
+| consolidação | BDI completo: `humor(mau→bom)` com gatilho de crença `+humor(bom)`, plano de fallback com `not` no contexto | ✅ Aprovado c/ ressalvas | 22/04/2026 |
+| conceitual | Perguntas de auto-verificação BDI + dimensões + `focus` | ✅ Q1 e Q2 corretas; Q3 parcial (percept→crença não articulado) | 23/04/2026 |

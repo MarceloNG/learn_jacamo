@@ -1,20 +1,26 @@
-# Progresso de Aprendizado — JaCaMo
-
 ## Módulo atual
 
-- **Módulo:** 0 — O que é JaCaMo e por que existe?
+- **Módulo:** 1 — Estrutura do projeto JaCaMo
 - **Status:** Não iniciado
+- **Anterior:** Módulo 0 — ✅ Concluído
 
 ## Histórico de exercícios
 
-| Módulo | Nível         | Exercício                          | Status      | Data       |
-|--------|---------------|------------------------------------|-------------|------------|
-| —      | —             | —                                  | —           | —          |
+| Módulo | Nível         | Exercício                                                       | Status               | Data       |
+|--------|---------------|-----------------------------------------------------------------|----------------------|------------|
+| 0      | intro         | Declarar `modulo_atual(0)` e imprimir o valor via `+!start`     | ✅ Concluído          | 22/04/2026 |
+| 0      | consolidação  | BDI completo: `humor(mau)→bom` com gatilho de crença `+humor(bom)` | ✅ Aprovado c/ ressalvas | 22/04/2026 |
+| 0      | conceitual    | Perguntas de auto-verificação BDI + dimensões + `focus`         | ✅ Q1 e Q2 corretas; Q3 parcial (percept→crença não articulado) | 23/04/2026 |
 
 ## Observações do tutor
 
-*(O tutor atualiza esta seção ao final de cada sessão com pontos de atenção, dificuldades observadas e próximos passos recomendados.)*
+**Módulo 0 — consolidação (22/04/2026)**
+- Ponto de atenção: operador `-+X` — o argumento é o **destino**, não a origem
+- Ponto de atenção: distinção entre `+!meta` (gatilho de meta) e `+crença(X)` (gatilho de crença)
+- Ponto de atenção: contexto de guarda usa `not crença(X)` para testar ausência; `-crença(X)` só vale no corpo do plano
 
----
-
-> **Como atualizar:** Peça ao `@jacamo-tutor` para registrar o resultado depois de cada exercício, ou edite manualmente seguindo o formato da tabela acima.
+**Módulo 0 — perguntas de auto-verificação (23/04/2026)**
+- Q1 (Belief vs Intention): ✅ conceito correto, especialmente distinção Desire vs Intention; faltou exemplo cotidiano explícito
+- Q2 (separação em dimensões): ✅ correto — separação de responsabilidades, independência, processos distribuídos
+- Q3 (focus: w.c1): ⚠️ parcialmente correto — identificou percepção do artefato, mas não articulou que sem `focus` os percepts (ex: `count(N)`) não viram crenças no belief base
+- Próximo passo recomendado: exercício intro do Módulo 1 (estrutura do projeto `.jcm`)
