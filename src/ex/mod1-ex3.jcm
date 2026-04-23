@@ -1,0 +1,33 @@
+// Módulo 1 — Exercício Consolidação
+// Monte este arquivo do zero conforme o enunciado.
+// Não há TODOs — a estrutura é por sua conta.
+
+mas mod1_ex3 {
+
+    // TODO: declare os três agentes (bob, alice, carlos)
+    //       com as crenças, goals e focus corretos conforme o enunciado
+    agent bob: sample_agent.asl {
+      beliefs: turno(manha)
+      focus: w.placar
+    }
+
+    agent alice: worker.asl {
+      beliefs: turno(tarde)
+    }
+
+    agent carlos: sample_agent.asl {
+    }
+    // TODO: declare o workspace com os dois artefatos
+    workspace w {
+      artifact placar: example.Counter(0) {
+        focused-by: bob, carlos 
+      }
+      artifact caixa: example.Counter(5)
+    }
+    // TODO: declare a organização com os papéis atribuídos
+    organisation o: org.xml {
+      group g1 : group1 {
+        players: bob role1
+      }
+    }
+}

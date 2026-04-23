@@ -205,3 +205,24 @@ Saída esperada:
 | Idioms JaCaMo    | ✅   | Sintaxe `.jcm` idiomática em todos os pontos |
 
 **Descoberta bônus:** identificou que `+!monitorar_contador` em `sample_agent.asl` chamava `inc` incondicionalmente, causando comportamento inesperado quando o artefato começa em valor ≥ 6. Corrigiu com `if (N < 6) { inc }` — uso correto do controle de fluxo dentro do corpo de plano AgentSpeak.
+
+---
+
+## Exercício consolidação — 23/04/2026
+
+**Enunciado:** Montar do zero um MAS com três agentes (`bob`, `alice`, `carlos`), dois artefatos no workspace (`placar` e `caixa`), `focused-by` para percepção automática, `goals:` para controle de comportamento por instância, e organização com papel atribuído.
+
+**Arquivos:** `src/ex/mod1-ex3.jcm`, `src/agt/worker.asl`
+
+**Resultado:** ✅ Aprovado
+
+| Critério         | Nota | Observação |
+|------------------|------|------------|
+| Corretude lógica | ✅   | bob e carlos monitoraram `placar` via `focused-by`; alice ficou sem monitoramento |
+| Sintaxe          | ✅   | `focused-by`, `beliefs:`, organização e `worker.asl` com sintaxe correta |
+| Estrutura        | ✅   | Separação de tipos de agente em arquivos `.asl` distintos — decisão de design correta |
+| Idioms JaCaMo    | ✅   | Uso correto de `focused-by` no bloco do artefato (não no bloco do agente) |
+
+**Aprendizado chave:** `goals:` no `.jcm` **adiciona** goals ao conjunto do `.asl`, nunca remove. Para diferenciar comportamento entre instâncias do mesmo sistema, a abordagem idiomática é criar arquivos `.asl` distintos (`worker.asl`, `manager.asl`, etc.).
+
+**Módulo 1 — concluído ✅**

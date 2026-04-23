@@ -1,7 +1,7 @@
 ## Módulo atual
 
 - **Módulo:** 1 — Estrutura do projeto JaCaMo
-- **Status:** Exercício intro ✅ Aprovado — aguardando exercício de consolidação
+- **Status:** Exercício de consolidação ✅ Aprovado — Módulo 1 concluído
 - **Anterior:** Módulo 0 — ✅ Concluído
 
 ## Histórico de exercícios
@@ -13,6 +13,7 @@
 | 0      | conceitual    | Perguntas de auto-verificação BDI + dimensões + `focus`         | ✅ Q1 e Q2 corretas; Q3 parcial (percept→crença não articulado) | 23/04/2026 |
 | 1      | conceitual    | Quiz da aula: instâncias independentes, focus, beliefs iniciais | ✅ 3/3 corretas                                                  | 23/04/2026 |
 | 1      | intro         | Segundo artefato `c2` no workspace + `focus` diferente para alice e bob | ✅ Aprovado | 23/04/2026 |
+| 1      | consolidação  | MAS com 3 agentes, 2 artefatos, `focused-by`, `goals:` e `worker.asl`   | ✅ Aprovado | 23/04/2026 |
 
 ## Observações do tutor
 
@@ -39,3 +40,10 @@
 - Descoberta proativa: identificou bug em `sample_agent.asl` — plano `+!monitorar_contador` chamava `inc` sem checar o valor inicial; corrigido com `if (N < 6) { inc }`
 - Ponto de destaque: uso idiomático do `if` dentro do corpo de plano — padrão importante para controle de fluxo em AgentSpeak
 - Próximo passo recomendado: exercício de consolidação do Módulo 1
+
+**Módulo 1 — exercício de consolidação (23/04/2026)**
+- `mod1-ex3.jcm`: MAS montado do zero com bob, alice e carlos usando arquivos `.asl` distintos
+- Ponto de destaque: compreensão de que `goals:` no `.jcm` **adiciona** goals (não substitui) — solução correta foi criar `worker.asl` sem `!monitorar_contador`
+- Ponto de destaque: `focused-by` dentro do bloco do artefato vs `focus:` no bloco do agente — distinção importante
+- Ponto de atenção: `goals:` no `.jcm` não pode remover goals declarados no `.asl`; para controlar comportamento por instância, a abordagem idiomática é usar arquivos `.asl` distintos
+- Módulo 1 concluído ✅ — pronto para Módulo 2 (Agentes: Beliefs, Goals e Plans)
