@@ -1,0 +1,30 @@
+// Módulo 1 — Exercício Intro 2
+// Objetivo: adicionar um segundo artefato c2 no workspace e configurar
+//           cada agente para focar em um artefato diferente.
+
+mas mod1_ex2 {
+
+    agent bob: sample_agent.asl {
+      focus: w.c1
+    }
+
+    agent alice: sample_agent.asl {
+      beliefs: papel(supervisora)
+      // TODO 1: faça alice focar no artefato c2 (em vez de c1)
+      focus: w.c2
+    }
+
+    workspace w {
+      artifact c1: example.Counter(3)
+      // TODO 2: declare aqui um segundo artefato c2 do tipo example.Counter
+      //         inicializando-o com o valor 10
+      artifact c2: example.Counter(10)
+    }
+
+    organisation o: org.xml {
+      group g1 : group1 {
+        players: bob role1
+      }
+    }
+
+}

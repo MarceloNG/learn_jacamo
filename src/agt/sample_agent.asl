@@ -64,8 +64,9 @@ humor(mau).
 // ─────────────────────────────────────────────────────────────────────────────
 +!monitorar_contador : count(N)
     <- .print("Contador em ", N, ", iniciando monitoramento.");
-       inc.  // chama inc() no artefato Counter → atualiza count no ambiente
-             // → CArtAgO notifica bob → count(N) muda no belief base → PLANO 2 dispara
+       if (N < 6) { inc }. // ação interna Jason: executa inc() se N < 6; caso contrário, não faz nada
+       // inc() é uma ação externa definida no artefato Counter.java, que incrementa o contador e atualiza a crença count(N) no belief base de bob
+       // → isso vai disparar o PLANO 2a ou 2b, dependendo do novo valor de N
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PLANO 2a — gatilho de CRENÇA (+count(N)) enquanto N < 6

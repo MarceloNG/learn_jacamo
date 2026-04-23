@@ -186,3 +186,22 @@ Saída esperada:
 | Q3 | Como declarar `alice` com crença inicial `papel(supervisora)`? | `agent alice: sample_agent.asl { beliefs: papel(supervisora) }` | ✅ | Sintaxe exata e idiomática. Múltiplas crenças podem ser separadas por vírgula: `beliefs: papel(supervisora), turno(manha)`. |
 
 **Resultado: 3/3 ✅ — Aula concluída. Pronto para exercícios do Módulo 1.**
+
+---
+
+## Exercício intro — 23/04/2026
+
+**Enunciado:** Declarar segundo artefato `c2: example.Counter(10)` no workspace e configurar `focus: w.c2` para alice, de modo que bob e alice monitorem artefatos distintos.
+
+**Arquivo:** `src/ex/mod1-ex2.jcm`
+
+**Resultado:** ✅ Aprovado
+
+| Critério         | Nota | Observação |
+|------------------|------|------------|
+| Corretude lógica | ✅   | bob percebeu `count(3)`, alice percebeu `count(10)` — cada agente no seu artefato |
+| Sintaxe          | ✅   | `artifact c2: example.Counter(10)` e `focus: w.c2` corretos |
+| Estrutura        | ✅   | Blocos `workspace` e `agent` organizados de forma clara |
+| Idioms JaCaMo    | ✅   | Sintaxe `.jcm` idiomática em todos os pontos |
+
+**Descoberta bônus:** identificou que `+!monitorar_contador` em `sample_agent.asl` chamava `inc` incondicionalmente, causando comportamento inesperado quando o artefato começa em valor ≥ 6. Corrigiu com `if (N < 6) { inc }` — uso correto do controle de fluxo dentro do corpo de plano AgentSpeak.
