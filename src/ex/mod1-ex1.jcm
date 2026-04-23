@@ -1,0 +1,27 @@
+// Módulo 1 — Quiz Q3
+// Objetivo: adicionar alice com sample_agent.asl e crença inicial papel(supervisora)
+
+mas mod1_ex1 {
+
+    agent bob: sample_agent.asl {
+      focus: w.c1
+    }
+
+    // TODO: declare alice aqui
+    //   - mesmo .asl que bob
+    //   - crença inicial: papel(supervisora)
+    agent alice: sample_agent.asl {
+      beliefs: papel(supervisora)
+    }
+
+    workspace w {
+      artifact c1: example.Counter(3)
+    }
+
+    organisation o: org.xml {
+      group g1 : group1 {
+        players: bob role1
+      }
+    }
+
+}

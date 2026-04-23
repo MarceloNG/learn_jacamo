@@ -174,3 +174,15 @@ Saída esperada:
 2. **O que acontece se você remover o bloco `organisation` do `.jcm`?** O MAS ainda roda? Bob ainda funciona?
 
 3. **O que significa `artifact c1: example.Counter(3)` — o que é `example.Counter` e o que significa o `3`?**
+
+---
+
+## Respostas de auto-verificação — 23/04/2026
+
+| # | Pergunta | Resposta do aluno | Status | Feedback |
+|---|----------|-------------------|--------|----------|
+| Q1 | `alice` e `bob` com mesmo `.asl` compartilham beliefs? | Não — são instâncias independentes com beliefs e intenções próprias | ✅ | Correto. O `.asl` define o tipo; cada declaração cria um objeto distinto com seu próprio belief base. |
+| Q2 | O que muda sem `focus: w.c1`? | Bob perde acesso às propriedades do Counter e não consegue reagir a alterações | ✅ | Correto. Sem `focus`, os percepts de `c1` nunca viram crenças — o agente literalmente não sabe que o artefato existe. |
+| Q3 | Como declarar `alice` com crença inicial `papel(supervisora)`? | `agent alice: sample_agent.asl { beliefs: papel(supervisora) }` | ✅ | Sintaxe exata e idiomática. Múltiplas crenças podem ser separadas por vírgula: `beliefs: papel(supervisora), turno(manha)`. |
+
+**Resultado: 3/3 ✅ — Aula concluída. Pronto para exercícios do Módulo 1.**
