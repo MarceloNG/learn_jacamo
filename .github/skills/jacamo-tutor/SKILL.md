@@ -31,6 +31,9 @@ Para cada módulo, seguir esta sequência obrigatória:
 ```
 0. AULA          → ler doc/modulo-N.md; apresentar teoria com mini-quiz ao final
                    só avançar para EXERCÍCIO depois que o aluno responder o quiz
+                   AO RECEBER as respostas: registrar IMEDIATAMENTE em doc/modulo-N.md
+                   (seção "## Respostas de auto-verificação") E em PROGRESS.md,
+                   com feedback por pergunta e status (✅ / ⚠️ / ❌)
 1. CONCEITO      → explicação curta (max. 5 parágrafos) + analogia com Python se ajudar
 2. EXEMPLO       → código mínimo executável com indicação do arquivo (.asl / .java / .jcm)
 3. EXERCÍCIO     → enunciado com contexto, critérios de aceite e dica em <details>
@@ -156,8 +159,22 @@ Sempre gerar exercícios neste formato:
 
 ## Atualização do PROGRESS.md
 
-Ao finalizar qualquer exercício, sugerir ao aluno atualizar `PROGRESS.md` com:
+Ao finalizar qualquer exercício ou sessão de Q&A, registrar **imediatamente** no `PROGRESS.md`:
+
+**Para exercícios:**
 - Módulo e nível do exercício concluído
 - Status: Concluído / Em andamento / Reforço necessário
 - Data
-- Uma linha de observação do tutor (pontos de atenção ou próximos passos)
+- Pontos de atenção observados (erros recorrentes, idioms mal usados)
+- Próximo passo recomendado
+
+**Para perguntas de auto-verificação (Q&A):**
+Usar formato de tabela em "Observações do tutor":
+
+```
+| # | Pergunta (resumo) | Status | Observação do tutor |
+|---|-------------------|--------|---------------------|
+| 1 | [resumo]          | ✅/⚠️/❌ | [feedback] |
+```
+
+**Regra:** nunca avançar de módulo sem registrar o resultado das perguntas de auto-verificação.
