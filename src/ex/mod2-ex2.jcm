@@ -1,0 +1,13 @@
+mas mod2_ex2 {
+    agent alice: alice_mod2.asl {
+
+    }
+
+    agent bob: bob_mod2.asl {
+
+    }
+
+    agent carlos: carlos_mod2.asl {
+
+    }
+}

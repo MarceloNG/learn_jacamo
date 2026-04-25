@@ -1,0 +1,6 @@
+mas mod2_ex1 {
+
+    agent bob: mod2_intro.asl {
+
+    }
+}

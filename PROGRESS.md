@@ -15,6 +15,8 @@
 | 1      | intro         | Segundo artefato `c2` no workspace + `focus` diferente para alice e bob | ✅ Aprovado | 23/04/2026 |
 | 1      | consolidação  | MAS com 3 agentes, 2 artefatos, `focused-by`, `goals:` e `worker.asl`   | ✅ Aprovado | 23/04/2026 |
 | 2      | conceitual    | Quiz da aula: guarda de plano, gatilho de crença, plano com condição inicial | ✅ Q2 correta; Q1 e Q3 parciais (2/3 aprovado) | 23/04/2026 |
+| 2      | intro         | Dois planos alternativos para `+!apresentar` usando guarda `turno(manha)` e fallback | ✅ Aprovado | 25/04/2026 |
+| 2      | consolidação  | Três agentes com `.send(..., tell, saudacao(...))` e planos alternativos por `[source(A)]` | ✅ Aprovado | 25/04/2026 |
 
 ## Observações do tutor
 
@@ -54,3 +56,16 @@
 - Q2 (gatilho de crença `+temperatura(T)`): ✅ correto — identificou disparador, guarda, print e adição de crença
 - Q3 (plano com crença inicial): ⚠️ parcial — lógica correta, mas faltou ponto em `.print` e argumento no goal era redundante com a guarda
 - Próximo passo: exercício intro do Módulo 2
+
+**Módulo 2 — exercício intro (25/04/2026)**
+- `mod2_intro.asl`: solução final usa dois planos para o mesmo gatilho `+!apresentar`, com plano específico para `turno(manha)` e fallback genérico
+- Ponto de destaque: entendeu que fallback deve ser outro plano `+!apresentar`, não um plano de falha `-!apresentar`
+- Ponto de atenção: Jason seleciona um plano aplicável para o evento; ele não executa todos os planos cujas guardas são verdadeiras
+- Próximo passo recomendado: exercício de consolidação do Módulo 2
+
+**Módulo 2 — exercício de consolidação (25/04/2026)**
+- `alice_mod2.asl` e `carlos_mod2.asl`: uso correto de `.send(bob, tell, saudacao(...))` com nome de agente em minúsculo
+- `bob_mod2.asl`: corrigido para reagir a crença recebida com `+saudacao(M)[source(A)]`, usando guarda `confio_em(A)` e fallback
+- Ponto de destaque: consolidou a diferença entre `tell` gerando evento de crença (`+crenca`) e achievement goal (`+!meta`)
+- `src/ex/mod2-ex2.jcm`: MAS próprio do exercício declarado como `mod2_ex2`
+- Próximo passo recomendado: `/proximo-passo` para decidir entre avançar ao Módulo 3 ou fazer um desafio curto do Módulo 2
