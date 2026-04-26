@@ -191,3 +191,40 @@ Além de declarar artefatos no `.jcm`, o agente pode criar artefatos dinamicamen
 | 1 | O que é propriedade observável? | Propriedade observável vira crença automática no agente que foca o artefato; quando muda no Java, CArtAgO atualiza a crença no Jason. | ✅ Correto | Captou o ponto central: `defineObsProperty` cria estado observável e `focus` é o que faz isso aparecer como crença no belief base. |
 | 2 | Diferença entre `updateValue` e `signal("tick")` | `updateValue` altera o valor e atualiza `count(N)` para agentes focando; `signal("tick")` emite evento separado reagível com `+tick[...]`. | ✅ Correto | Boa distinção: propriedade observável atualiza crença; sinal dispara evento, sem ser a própria propriedade. |
 | 3 | Diferença entre `inc.` e `inc_get(1, V).` | `inc` incrementa sem retorno; `inc_get` incrementa e retorna o novo valor em `V`, útil quando o plano precisa usar esse valor depois. | ✅ Correto | Perfeito: `OpFeedbackParam` liga a variável do lado Jason ao valor calculado no artefato. |
+
+---
+
+## Exercício intro — registro de correção (26/04/2026)
+
+**Arquivos avaliados:**
+- `src/ex/mod3-ex1.jcm`
+- `src/agt/mod3_intro.asl`
+
+**Resultado:** ✅ Aprovado
+
+### O que foi validado
+
+- **JaCaMo `.jcm`:** `bob` foi conectado ao workspace `w` e focou corretamente o artefato `c1` com `focus: w.c1`.
+- **CArtAgO:** o workspace `w` declarou `artifact c1: example.Counter(5)`, criando a propriedade observável `count(5)`.
+- **Jason:** o plano `+!observar_contador : count(N)` usou a crença observável `count(N)` como guarda, imprimiu o valor inicial e chamou `inc_get(1, NovoValor)`.
+
+### Saída confirmada
+
+```text
+[Cartago] Workspace w created.
+[Cartago] artifact c1: example.Counter(5) at w created.
+[bob] focusing on artifact c1 (at workspace /main/w) using namespace default
+[bob] Valor inicial do contador: 5
+[bob] Valor do contador apos incremento: 6
+```
+
+### Rubrica
+
+| Critério | Status | Observação |
+|----------|--------|------------|
+| Corretude lógica | ✅ | O agente percebe `count(5)` e incrementa para `6`. |
+| Sintaxe | ✅ | `.jcm` e `.asl` executam corretamente. |
+| Estrutura | ✅ | Separação clara entre configuração MAS, artefato e plano Jason. |
+| Idioms JaCaMo | ✅ | Uso correto de `focus`, propriedade observável e operação com retorno `inc_get`. |
+
+**Próximo passo recomendado:** fazer um exercício de consolidação do Módulo 3 com dois agentes compartilhando o mesmo artefato ou criar um artefato CArtAgO simples próprio.

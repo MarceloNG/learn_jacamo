@@ -1,7 +1,7 @@
 ## Módulo atual
 
 - **Módulo:** 3 — Ambiente: Artefatos e Workspaces (CArtAgO)
-- **Status:** Quiz da aula concluído ✅ (3/3 corretas — aprovado)
+- **Status:** Exercício intro concluído ✅
 - **Anterior:** Módulo 2 — ✅ Concluído
 
 ## Histórico de exercícios
@@ -18,6 +18,7 @@
 | 2      | intro         | Dois planos alternativos para `+!apresentar` usando guarda `turno(manha)` e fallback | ✅ Aprovado | 25/04/2026 |
 | 2      | consolidação  | Três agentes com `.send(..., tell, saudacao(...))` e planos alternativos por `[source(A)]` | ✅ Aprovado | 25/04/2026 |
 | 3      | conceitual    | Quiz da aula: propriedades observáveis, `updateValue` vs `signal`, `inc` vs `inc_get` | ✅ 3/3 corretas | 26/04/2026 |
+| 3      | intro         | Conectar `bob` ao `Counter(5)` com `focus: w.c1` e usar `inc_get(1, NovoValor)` | ✅ Aprovado | 26/04/2026 |
 
 ## Observações do tutor
 
@@ -76,3 +77,11 @@
 - Q2 (`updateValue` vs `signal`): ✅ correto — distinguiu atualização de crença observável de emissão de sinal/evento separado
 - Q3 (`inc` vs `inc_get`): ✅ correto — entendeu operação sem retorno vs operação com retorno via variável ligada no plano
 - Próximo passo: exercício intro do Módulo 3
+
+**Módulo 3 — exercício intro (26/04/2026)**
+- `src/ex/mod3-ex1.jcm`: bob foca corretamente o artefato `w.c1`; workspace `w` declara `c1` como `example.Counter(5)`
+- `src/agt/mod3_intro.asl`: plano `+!observar_contador : count(N)` lê a propriedade observável como crença, imprime `5`, chama `inc_get(1, NovoValor)` e imprime `6`
+- Saída confirmada: workspace e artefato criados, bob focando `c1`, `Valor inicial do contador: 5`, `Valor do contador apos incremento: 6`
+- Rubrica: corretude lógica ✅; sintaxe ✅; estrutura ✅; idioms JaCaMo ✅
+- Ponto de destaque: boa integração entre JaCaMo `.jcm`, crença Jason derivada de propriedade observável CArtAgO e operação com retorno via `OpFeedbackParam`
+- Próximo passo recomendado: exercício de consolidação do Módulo 3 com mais de um agente ou um artefato próprio simples

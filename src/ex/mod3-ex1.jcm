@@ -1,0 +1,18 @@
+// Modulo 3 — Exercicio Intro
+// Objetivo: conectar um agente Jason a um artefato CArtAgO Counter.
+
+mas mod3_ex1 {
+
+    agent bob: mod3_intro.asl {
+        // TODO 1: faca bob focar no artefato c1 dentro do workspace w.
+        // Exemplo de formato: focus: workspace.artefato
+        focus: w.c1
+    }
+
+    workspace w {
+        // TODO 2: declare aqui um artefato c1 do tipo example.Counter
+        //         inicializado com valor 5.
+        artifact c1: example.Counter(5)
+
+    }
+}
