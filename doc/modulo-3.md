@@ -181,3 +181,13 @@ Além de declarar artefatos no `.jcm`, o agente pode criar artefatos dinamicamen
    O que `updateValue` faz para os agentes que estão focando? O que `signal("tick")` faz de diferente de `updateValue`?
 
 3. **No agente, qual é a diferença entre `inc.` e `inc_get(1, V).`?** Quando você usaria cada um?
+
+---
+
+## Respostas de auto-verificação (26/04/2026)
+
+| # | Pergunta | Resposta do aluno | Status | Feedback |
+|---|----------|-------------------|--------|----------|
+| 1 | O que é propriedade observável? | Propriedade observável vira crença automática no agente que foca o artefato; quando muda no Java, CArtAgO atualiza a crença no Jason. | ✅ Correto | Captou o ponto central: `defineObsProperty` cria estado observável e `focus` é o que faz isso aparecer como crença no belief base. |
+| 2 | Diferença entre `updateValue` e `signal("tick")` | `updateValue` altera o valor e atualiza `count(N)` para agentes focando; `signal("tick")` emite evento separado reagível com `+tick[...]`. | ✅ Correto | Boa distinção: propriedade observável atualiza crença; sinal dispara evento, sem ser a própria propriedade. |
+| 3 | Diferença entre `inc.` e `inc_get(1, V).` | `inc` incrementa sem retorno; `inc_get` incrementa e retorna o novo valor em `V`, útil quando o plano precisa usar esse valor depois. | ✅ Correto | Perfeito: `OpFeedbackParam` liga a variável do lado Jason ao valor calculado no artefato. |

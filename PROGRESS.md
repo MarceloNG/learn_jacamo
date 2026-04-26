@@ -1,8 +1,8 @@
 ## Módulo atual
 
-- **Módulo:** 2 — Agentes: Beliefs, Goals e Plans (Jason/AgentSpeak)
-- **Status:** Quiz da aula concluído ✅ (1 correto, 2 parciais — aprovado)
-- **Anterior:** Módulo 1 — ✅ Concluído
+- **Módulo:** 3 — Ambiente: Artefatos e Workspaces (CArtAgO)
+- **Status:** Quiz da aula concluído ✅ (3/3 corretas — aprovado)
+- **Anterior:** Módulo 2 — ✅ Concluído
 
 ## Histórico de exercícios
 
@@ -17,6 +17,7 @@
 | 2      | conceitual    | Quiz da aula: guarda de plano, gatilho de crença, plano com condição inicial | ✅ Q2 correta; Q1 e Q3 parciais (2/3 aprovado) | 23/04/2026 |
 | 2      | intro         | Dois planos alternativos para `+!apresentar` usando guarda `turno(manha)` e fallback | ✅ Aprovado | 25/04/2026 |
 | 2      | consolidação  | Três agentes com `.send(..., tell, saudacao(...))` e planos alternativos por `[source(A)]` | ✅ Aprovado | 25/04/2026 |
+| 3      | conceitual    | Quiz da aula: propriedades observáveis, `updateValue` vs `signal`, `inc` vs `inc_get` | ✅ 3/3 corretas | 26/04/2026 |
 
 ## Observações do tutor
 
@@ -68,4 +69,10 @@
 - `bob_mod2.asl`: corrigido para reagir a crença recebida com `+saudacao(M)[source(A)]`, usando guarda `confio_em(A)` e fallback
 - Ponto de destaque: consolidou a diferença entre `tell` gerando evento de crença (`+crenca`) e achievement goal (`+!meta`)
 - `src/ex/mod2-ex2.jcm`: MAS próprio do exercício declarado como `mod2_ex2`
-- Próximo passo recomendado: `/proximo-passo` para decidir entre avançar ao Módulo 3 ou fazer um desafio curto do Módulo 2
+- Módulo 2 concluído ✅ — pronto para Módulo 3 (Ambiente: Artefatos e Workspaces)
+
+**Módulo 3 — quiz da aula (26/04/2026)**
+- Q1 (propriedade observável): ✅ correto — identificou que `defineObsProperty` vira crença automática para agentes com `focus` e é atualizada quando o Java muda
+- Q2 (`updateValue` vs `signal`): ✅ correto — distinguiu atualização de crença observável de emissão de sinal/evento separado
+- Q3 (`inc` vs `inc_get`): ✅ correto — entendeu operação sem retorno vs operação com retorno via variável ligada no plano
+- Próximo passo: exercício intro do Módulo 3
