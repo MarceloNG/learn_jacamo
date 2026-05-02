@@ -1,0 +1,17 @@
+// Modulo 3 — Exercicio de consolidacao
+// Objetivo: dois agentes compartilhando um artefato CArtAgO proprio.
+
+mas mod3_ex2 {
+
+    agent aquecedor: aquecedor_mod3.asl {
+        focus: w.termometro
+    }
+
+    agent fiscal: fiscal_mod3.asl {
+        focus: w.termometro
+    }
+
+    workspace w {
+        artifact termometro: example.Termometro(20)
+    }
+}
