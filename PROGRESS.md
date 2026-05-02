@@ -1,8 +1,8 @@
 ## Módulo atual
 
-- **Módulo:** 3 — Ambiente: Artefatos e Workspaces (CArtAgO)
-- **Status:** Exercício intro concluído ✅
-- **Anterior:** Módulo 2 — ✅ Concluído
+- **Módulo:** 4 — Organização: Grupos, Papéis e Esquemas (Moise)
+- **Status:** Quiz da aula concluído ✅ (2/3 corretas — aprovado)
+- **Anterior:** Módulo 3 — ✅ Concluído
 
 ## Histórico de exercícios
 
@@ -19,6 +19,8 @@
 | 2      | consolidação  | Três agentes com `.send(..., tell, saudacao(...))` e planos alternativos por `[source(A)]` | ✅ Aprovado | 25/04/2026 |
 | 3      | conceitual    | Quiz da aula: propriedades observáveis, `updateValue` vs `signal`, `inc` vs `inc_get` | ✅ 3/3 corretas | 26/04/2026 |
 | 3      | intro         | Conectar `bob` ao `Counter(5)` com `focus: w.c1` e usar `inc_get(1, NovoValor)` | ✅ Aprovado | 26/04/2026 |
+| 3      | consolidação  | `Termometro` com propriedade observável `temperatura`, agente `aquecedor` e agente `fiscal` | ✅ Aprovado c/ ressalvas | 26/04/2026 |
+| 4      | conceitual    | Quiz da aula: estrutura/funcional/normativa, norma de obrigação, consulta por papel | ✅ 2/3 corretas | 02/05/2026 |
 
 ## Observações do tutor
 
@@ -85,3 +87,19 @@
 - Rubrica: corretude lógica ✅; sintaxe ✅; estrutura ✅; idioms JaCaMo ✅
 - Ponto de destaque: boa integração entre JaCaMo `.jcm`, crença Jason derivada de propriedade observável CArtAgO e operação com retorno via `OpFeedbackParam`
 - Próximo passo recomendado: exercício de consolidação do Módulo 3 com mais de um agente ou um artefato próprio simples
+
+**Módulo 3 — exercício de consolidação (26/04/2026)**
+- `src/env/example/Termometro.java`: artefato CArtAgO criado com propriedade observável `temperatura` e operação `ajustar(int delta)` usando `updateValue`
+- `src/ex/mod3-ex2.jcm`: MAS `mod3_ex2` configurado com agentes `aquecedor` e `fiscal` focando o mesmo artefato `w.termometro`
+- `src/agt/aquecedor_mod3.asl`: corrigido para manter `ajustar(3)`, `.wait(1000)` e recursão `!aquecer` dentro do mesmo plano
+- `src/agt/fiscal_mod3.asl`: corrigido para usar dois planos com guarda, `T < 30` e `T >= 30`, sem plano genérico competindo pelo mesmo evento
+- Rubrica: corretude lógica ✅; sintaxe ✅ após correção; estrutura ✅; idioms JaCaMo ⚠️ por confusão inicial entre ação interna Jason (`.wait`) e operação CArtAgO (`ajustar`)
+- Ponto de atenção: em Jason, o ponto final encerra o plano; ações no corpo ficam entre `<-` e `.` separadas por `;`
+- Ponto de atenção: ações internas Jason usam prefixo `.`, enquanto operações CArtAgO expostas por `@OPERATION` são chamadas sem `.`
+- Próximo passo recomendado: revisar sinais CArtAgO (`signal`) e então avançar para a aula do Módulo 4 (Moise)
+
+**Módulo 4 — quiz da aula (02/05/2026)**
+- Q1 (especificações Moise): ✅ correto — distinguiu estrutural, funcional e normativa, incluindo a ligação papel→missão
+- Q2 (norma de obrigação): ✅ correto — identificou que `role2` fica obrigado a cumprir `mission1`
+- Q3 (consulta por papel): ⚠️ parcial — apontou `play(bob, role2, g1)`, mas para evitar acoplamento o padrão é consultar com variável: `play(Ag, role2, _)`
+- Próximo passo: exercício intro do Módulo 4

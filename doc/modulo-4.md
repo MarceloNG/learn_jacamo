@@ -225,3 +225,13 @@ Responda sem consultar antes:
 3. O que `{ include("$moise/asl/org-obedient.asl") }` faz que sem ele não aconteceria?
 
 > Use `/aula 4` no chat para discutir as respostas com o tutor antes de ir para os exercícios.
+
+---
+
+## Respostas de auto-verificação (02/05/2026)
+
+| # | Pergunta | Resposta do aluno | Status | Feedback |
+|---|----------|-------------------|--------|----------|
+| 1 | Diferença entre especificações estrutural, funcional e normativa | Estrutural define quem pode existir; funcional define o que precisa ser feito; normativa define quem deve fazer o quê e liga papel a missão. | ✅ Correto | Boa síntese das três camadas de Moise: estrutura social, processo coletivo e vínculo normativo. |
+| 2 | O que faz a norma `norm1` | Define que o papel `role2` tem obrigação de cumprir `mission1`. | ✅ Correto | Exato: a norma associa um papel a uma missão por obrigação. |
+| 3 | Como mandar mensagem para quem tem `role2` sem escrever `bob` | `play(bob, role2, g1)`. | ⚠️ Parcial | A crença está no caminho certo, mas para desacoplar de `bob` o plano deve consultar com variável, por exemplo `play(Ag, role2, _)`, e então usar `Ag`. |
