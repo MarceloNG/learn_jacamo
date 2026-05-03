@@ -1,0 +1,27 @@
+// Modulo 4 — Exercicio de consolidacao
+//
+// Objetivo:
+// Instanciar uma organizacao Moise em que o agente trabalhador joga role2,
+// recebe uma obrigacao para mission1 e cumpre os goals dessa missao com
+// ajuda de org-obedient.asl.
+
+mas mod4_ex2 {
+    agent coordenadora: coordenadora_mod4.asl
+    agent trabalhador: trabalhador_mod4.asl
+
+    // Usa uma especificacao propria do exercicio para evitar alterar
+    // src/org/org.xml, que e compartilhado pelo projeto.
+    organisation o: org_mod4_ex2.xml {
+        group g1: group1 {
+            // O grupo precisa ser responsavel pelo scheme para que as
+            // missoes/normas sejam ativadas em runtime.
+            responsible-for: s1
+
+            players: coordenadora role1
+                     trabalhador role2
+        }
+
+        // Instancia do scheme1 definido em org_mod4_ex2.xml.
+        scheme s1: scheme1
+    }
+}

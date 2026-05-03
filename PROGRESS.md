@@ -1,7 +1,7 @@
 ## Módulo atual
 
 - **Módulo:** 4 — Organização: Grupos, Papéis e Esquemas (Moise)
-- **Status:** Exercício intro concluído ✅
+- **Status:** Exercício de consolidação concluído ✅
 - **Anterior:** Módulo 3 — ✅ Concluído
 
 ## Histórico de exercícios
@@ -22,6 +22,7 @@
 | 3      | consolidação  | `Termometro` com propriedade observável `temperatura`, agente `aquecedor` e agente `fiscal` | ✅ Aprovado c/ ressalvas | 26/04/2026 |
 | 4      | conceitual    | Quiz da aula: estrutura/funcional/normativa, norma de obrigação, consulta por papel | ✅ 2/3 corretas | 02/05/2026 |
 | 4      | intro         | Agentes `alice` e `bob` em papéis Moise; Alice envia saudação consultando `play(Ag, role2, _)` | ✅ Aprovado | 02/05/2026 |
+| 4      | consolidação  | Organização própria com `scheme1`, `mission1`, norma `role2 -> mission1` e `org-obedient.asl` | ✅ Aprovado c/ ressalvas | 03/05/2026 |
 
 ## Observações do tutor
 
@@ -113,3 +114,17 @@
 - Rubrica: corretude lógica ✅; sintaxe ✅; estrutura ✅; idioms JaCaMo ✅
 - Ponto de destaque: consolidou o desacoplamento por papel — Alice não usa `.send(bob, ...)`, mas envia para a variável `Ag` obtida de `play(Ag, role2, _)`
 - Próximo passo recomendado: exercício de consolidação do Módulo 4 com obrigações/missões ou reforço curto em `org-obedient.asl`
+
+**Módulo 4 — exercício de consolidação (03/05/2026)**
+- Objetivo: conectar `scheme`, `mission`, `norm` e `org-obedient.asl` para que o agente `trabalhador` cumpra objetivos organizacionais
+- Dificuldade observada: entender que `<norm ... role="role2" mission="mission1"/>` no XML não basta sozinho; em runtime o `.jcm` também precisa instanciar o `scheme` e ligar o grupo com `responsible-for`
+- Dificuldade observada: `scheme s1: scheme1` cria a instância do processo, mas `group g1` precisa declarar `responsible-for: s1` para que o grupo seja responsável por esse processo
+- Dificuldade observada: o `org.xml` global tinha `goal2 -> goal3 -> goal4`, com `goal3` em `mission2`; isso confundiu a consolidação porque o exercício queria focar só `mission1` (`goal2` e `goal4`)
+- Decisão didática: criar uma organização própria para o exercício (`src/org/org_mod4_ex2.xml`) com sequência simplificada `goal2 -> goal4`, evitando alterar o `src/org/org.xml` global
+- `src/ex/mod4-ex2.jcm`: solução final usa `organisation o: org_mod4_ex2.xml`, `group g1: group1`, `responsible-for: s1`, `players: coordenadora role1 / trabalhador role2`, e `scheme s1: scheme1`
+- `src/agt/trabalhador_mod4.asl`: planos `+!goal2` e `+!goal4` definidos e `org-obedient.asl` incluído para transformar obrigação Moise em objetivos Jason
+- `src/agt/coordenadora_mod4.asl`: plano inicial observa a crença organizacional `play(Ag, role2, _)` e imprime quem joga `role2`
+- Saída parcial confirmada pelo aluno: `scheme created: s1: scheme1`, `group created: g1: group1`, coordenadora percebe `trabalhador role2`, e trabalhador recebe obrigação: `I am obliged to commit to mission1 on s1... doing so`
+- Rubrica: corretude lógica ✅ com ressalva operacional; sintaxe ✅; estrutura ✅; idioms JaCaMo ✅
+- Ponto de atenção: o runtime JaCaMo não finaliza sozinho; use `timeout ...` ou interrompa com `Ctrl+C` depois de observar logs/inspetores
+- Próximo passo recomendado: revisar no Organisation Inspector o estado de `s1`, `mission1`, `goal2` e `goal4`; depois avançar para o próximo passo do Módulo 4 ou para integração no Módulo 5

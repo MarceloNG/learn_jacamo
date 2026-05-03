@@ -275,3 +275,98 @@ Responda sem consultar antes:
 | Idioms JaCaMo | ✅ | Uso correto de `play(Ag, role2, _)`, `.wait(...)`, `.send(...)` e `[source(Remetente)]`. |
 
 **Próximo passo recomendado:** praticar uma consolidação com missão/obrigação, usando `org-obedient.asl` para conectar normas Moise a objetivos Jason.
+
+---
+
+## Nota de estudo — consolidação com `scheme`, `mission` e `org-obedient` (03/05/2026)
+
+Durante o exercício de consolidação, apareceu uma dificuldade importante: distinguir a **especificação** Moise do que precisa ser **instanciado em runtime** no `.jcm`.
+
+### O que ficou claro
+
+Ter uma norma no XML:
+
+```xml
+<norm id="norm1" type="obligation" role="role2" mission="mission1"/>
+```
+
+define a regra social, mas não executa tudo sozinha. Para a obrigação virar comportamento observável no agente, o ciclo precisa estar completo:
+
+```text
+agente joga role2
+  -> grupo instanciado
+  -> scheme instanciado
+  -> grupo responsible-for scheme
+  -> norma gera obrigação de mission1
+  -> org-obedient.asl transforma obrigação em objetivos Jason
+  -> planos +!goal2 / +!goal4 executam
+```
+
+### Ponto de sintaxe no `.jcm`
+
+Instanciar o scheme:
+
+```jcm
+scheme s1: scheme1
+```
+
+não é o mesmo que tornar o grupo responsável por ele. A ligação fica no grupo:
+
+```jcm
+group g1: group1 {
+    responsible-for: s1
+    players: coordenadora role1
+             trabalhador role2
+}
+```
+
+### Por que criar um XML próprio para o exercício
+
+O `src/org/org.xml` global define uma sequência com `goal2 -> goal3 -> goal4`, mas `mission1` cobre apenas `goal2` e `goal4`; `goal3` pertence a `mission2`. Para um exercício de consolidação focado em `mission1`, isso cria uma dependência extra que distrai do conceito central.
+
+Por isso, a decisão didática foi criar `src/org/org_mod4_ex2.xml`, com um `scheme1` simplificado:
+
+```text
+goal2 -> goal4
+```
+
+e `mission1` cobrindo os dois objetivos. Assim o exercício testa diretamente a relação entre norma, missão, `org-obedient.asl` e planos Jason.
+
+---
+
+## Exercício de consolidação — registro de correção (03/05/2026)
+
+**Arquivos avaliados:**
+- `src/ex/mod4-ex2.jcm`
+- `src/org/org_mod4_ex2.xml`
+- `src/agt/trabalhador_mod4.asl`
+- `src/agt/coordenadora_mod4.asl`
+
+**Resultado:** ✅ Aprovado com ressalvas
+
+### O que foi validado
+
+- **Moise / `.jcm`:** o grupo `g1` instancia `group1`, assume responsabilidade por `s1` com `responsible-for: s1`, e instancia `scheme s1: scheme1`.
+- **Moise / XML:** `org_mod4_ex2.xml` isola o exercício do `org.xml` global e define um fluxo simples `goal2 -> goal4`, ambos cobertos por `mission1`.
+- **Jason em trabalhador:** `org-obedient.asl` foi incluído e há planos para `+!goal2` e `+!goal4`.
+- **Jason em coordenadora:** o plano usa `play(Ag, role2, _)` para observar quem joga `role2`.
+
+### Saída observada
+
+```text
+[Moise] scheme created: s1: scheme1 using artifact SchemeBoard
+[Moise] group created: g1: group1 using artifact ora4mas.nopl.GroupBoard
+[coordenadora] Coordenadora percebeu que trabalhador joga role2.
+[trabalhador] I am obliged to commit to mission1 on s1... doing so
+```
+
+### Rubrica
+
+| Critério | Status | Observação |
+|----------|--------|------------|
+| Corretude lógica | ✅ | O ciclo `role2 -> mission1 -> obligation -> org-obedient` foi alcançado. |
+| Sintaxe | ✅ | `.jcm`, `.xml` e `.asl` compilam/executam sem erro de parser. |
+| Estrutura | ✅ | Boa separação entre configuração MAS, especificação organizacional e planos Jason. |
+| Idioms JaCaMo | ✅ | Uso correto de `responsible-for`, `scheme`, `org-obedient.asl` e planos `+!goal`. |
+
+**Ressalva:** a execução JaCaMo permanece viva por padrão; isso é normal. Para validar de forma prática, observe os logs e o Organisation Inspector e encerre com `Ctrl+C` ou rode com `timeout`.
