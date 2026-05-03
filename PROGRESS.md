@@ -1,7 +1,7 @@
 ## Módulo atual
 
 - **Módulo:** 4 — Organização: Grupos, Papéis e Esquemas (Moise)
-- **Status:** Quiz da aula concluído ✅ (2/3 corretas — aprovado)
+- **Status:** Exercício intro concluído ✅
 - **Anterior:** Módulo 3 — ✅ Concluído
 
 ## Histórico de exercícios
@@ -21,6 +21,7 @@
 | 3      | intro         | Conectar `bob` ao `Counter(5)` com `focus: w.c1` e usar `inc_get(1, NovoValor)` | ✅ Aprovado | 26/04/2026 |
 | 3      | consolidação  | `Termometro` com propriedade observável `temperatura`, agente `aquecedor` e agente `fiscal` | ✅ Aprovado c/ ressalvas | 26/04/2026 |
 | 4      | conceitual    | Quiz da aula: estrutura/funcional/normativa, norma de obrigação, consulta por papel | ✅ 2/3 corretas | 02/05/2026 |
+| 4      | intro         | Agentes `alice` e `bob` em papéis Moise; Alice envia saudação consultando `play(Ag, role2, _)` | ✅ Aprovado | 02/05/2026 |
 
 ## Observações do tutor
 
@@ -103,3 +104,12 @@
 - Q2 (norma de obrigação): ✅ correto — identificou que `role2` fica obrigado a cumprir `mission1`
 - Q3 (consulta por papel): ⚠️ parcial — apontou `play(bob, role2, g1)`, mas para evitar acoplamento o padrão é consultar com variável: `play(Ag, role2, _)`
 - Próximo passo: exercício intro do Módulo 4
+
+**Módulo 4 — exercício intro (02/05/2026)**
+- `src/ex/mod4-ex1.jcm`: MAS `mod4_ex1` criado com organização `o: org.xml`, grupo `g1: group1`, `alice role1` e `bob role2`
+- `src/agt/alice_mod4.asl`: uso correto de `.wait(play(Ag, role2, _))` para descobrir o agente pelo papel antes de enviar `saudacao("bom dia")`
+- `src/agt/bob_mod4.asl`: reação correta a `+saudacao(Texto)[source(Remetente)]`, imprimindo a mensagem e a origem
+- Saída confirmada: `OrgBoard o created`, `group created: g1: group1`, agentes focando `g1` e `o`, e `[bob] recebi 'bom dia' de alice`
+- Rubrica: corretude lógica ✅; sintaxe ✅; estrutura ✅; idioms JaCaMo ✅
+- Ponto de destaque: consolidou o desacoplamento por papel — Alice não usa `.send(bob, ...)`, mas envia para a variável `Ag` obtida de `play(Ag, role2, _)`
+- Próximo passo recomendado: exercício de consolidação do Módulo 4 com obrigações/missões ou reforço curto em `org-obedient.asl`

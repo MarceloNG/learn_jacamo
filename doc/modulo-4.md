@@ -235,3 +235,43 @@ Responda sem consultar antes:
 | 1 | Diferença entre especificações estrutural, funcional e normativa | Estrutural define quem pode existir; funcional define o que precisa ser feito; normativa define quem deve fazer o quê e liga papel a missão. | ✅ Correto | Boa síntese das três camadas de Moise: estrutura social, processo coletivo e vínculo normativo. |
 | 2 | O que faz a norma `norm1` | Define que o papel `role2` tem obrigação de cumprir `mission1`. | ✅ Correto | Exato: a norma associa um papel a uma missão por obrigação. |
 | 3 | Como mandar mensagem para quem tem `role2` sem escrever `bob` | `play(bob, role2, g1)`. | ⚠️ Parcial | A crença está no caminho certo, mas para desacoplar de `bob` o plano deve consultar com variável, por exemplo `play(Ag, role2, _)`, e então usar `Ag`. |
+
+---
+
+## Exercício intro — registro de correção (02/05/2026)
+
+**Arquivos avaliados:**
+- `src/ex/mod4-ex1.jcm`
+- `src/agt/alice_mod4.asl`
+- `src/agt/bob_mod4.asl`
+
+**Resultado:** ✅ Aprovado
+
+### O que foi validado
+
+- **Moise / `.jcm`:** o MAS `mod4_ex1` instancia a organização `o: org.xml`, cria o grupo `g1: group1` e atribui `alice role1` e `bob role2`.
+- **Jason em Alice:** o plano `+!saudar_por_papel` consulta `play(Ag, role2, _)`, espera a crença organizacional existir e envia a saudação para a variável `Ag`.
+- **Jason em Bob:** o plano `+saudacao(Texto)[source(Remetente)]` reage ao `tell` recebido e imprime a origem da mensagem.
+
+### Saída confirmada
+
+```text
+[Moise] OrgBoard o created.
+[Moise] group created: g1: group1 using artifact ora4mas.nopl.GroupBoard
+[bob] focusing on artifact g1 (at workspace /main/o) using namespace default
+[alice] focusing on artifact g1 (at workspace /main/o) using namespace default
+[bob] focusing on artifact o (at workspace /main/o) using namespace default
+[alice] focusing on artifact o (at workspace /main/o) using namespace default
+[bob] recebi 'bom dia' de alice
+```
+
+### Rubrica
+
+| Critério | Status | Observação |
+|----------|--------|------------|
+| Corretude lógica | ✅ | Alice descobre o destinatário por papel e Bob recebe a saudação. |
+| Sintaxe | ✅ | `.jcm` e `.asl` executam corretamente. |
+| Estrutura | ✅ | Separação clara entre configuração organizacional e planos dos agentes. |
+| Idioms JaCaMo | ✅ | Uso correto de `play(Ag, role2, _)`, `.wait(...)`, `.send(...)` e `[source(Remetente)]`. |
+
+**Próximo passo recomendado:** praticar uma consolidação com missão/obrigação, usando `org-obedient.asl` para conectar normas Moise a objetivos Jason.

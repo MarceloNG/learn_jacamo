@@ -1,0 +1,31 @@
+// Modulo 4 — Exercicio de introducao
+//
+// Dimensao Moise:
+// Este arquivo mostra como criar uma organizacao e atribuir papeis
+// aos agentes. A ideia central e que alice fale com "quem tem role2",
+// nao diretamente com um agente chamado bob.
+
+
+mas mod4_ex1 {
+
+    // Dimensao Jason:
+    // Cada agent aponta para um arquivo .asl com os planos do agente.
+    // Aqui alice tera o plano que consulta play(Ag, role2, _).
+    agent alice: alice_mod4.asl
+
+    // Bob sera apenas o agente que joga role2 e recebe a saudacao.
+    agent bob: bob_mod4.asl
+
+    // Dimensao Moise:
+    // "o" e a instancia organizacional baseada em src/org/org.xml.
+    organisation o: org.xml {
+        // "g1" e uma instancia do tipo de grupo "group1" definido no org.xml.
+        group g1: group1 {
+            // players liga agentes concretos a papeis organizacionais.
+            // Depois disso, os agentes podem perceber crencas como:
+            // play(alice, role1, g1) e play(bob, role2, g1).
+            players: alice role1
+                     bob   role2
+        }
+    }
+}
