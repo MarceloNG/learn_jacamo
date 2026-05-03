@@ -179,3 +179,13 @@ Responda sem consultar antes:
 3. Qual abordagem permite verificar, após o leilão, se todos os participantes realmente enviaram um lance?
 
 > Use `/aula 5` no chat para discutir as respostas com o tutor antes de ir para os exercícios.
+
+---
+
+## Respostas de auto-verificação (03/05/2026)
+
+| # | Pergunta | Resposta do aluno | Status | Feedback |
+|---|----------|-------------------|--------|----------|
+| 1 | Em coordenação por artefato, qual responsabilidade sai dos agentes e passa para o ambiente? | O artefato compartilhado mantém estado/protocolo; agentes apenas operam e percebem, como no `Termometro.java` com `temperatura` e `ajustar(Delta)`. | ✅ Correto | Boa ligação com o Módulo 3: o ambiente passa a centralizar estado e parte do protocolo. |
+| 2 | No trecho com `group`, `responsible-for` e `scheme`, qual dimensão coordena? | O scheme/organização coordena através de papel, missão e norma. | ✅ Correto | Exato: esse é o caso Moise, não mensagem direta nem artefato CArtAgO. |
+| 3 | Em leilão com participantes entrando e saindo dinamicamente, qual abordagem tende a ser mais robusta? | Organização, pois permite definir em runtime qual missão o agente que entra fica responsável por executar. | ✅ Correto | Ótima leitura do trade-off: sistemas abertos combinam bem com papéis, missões e normas. |

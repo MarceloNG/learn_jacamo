@@ -1,8 +1,8 @@
 ## Módulo atual
 
-- **Módulo:** 4 — Organização: Grupos, Papéis e Esquemas (Moise)
-- **Status:** Exercício de consolidação concluído ✅
-- **Anterior:** Módulo 3 — ✅ Concluído
+- **Módulo:** 5 — Coordenação: As Três Dimensões
+- **Status:** Quiz da aula concluído ✅ (3/3 corretas — aprovado)
+- **Anterior:** Módulo 4 — ✅ Concluído
 
 ## Histórico de exercícios
 
@@ -23,6 +23,7 @@
 | 4      | conceitual    | Quiz da aula: estrutura/funcional/normativa, norma de obrigação, consulta por papel | ✅ 2/3 corretas | 02/05/2026 |
 | 4      | intro         | Agentes `alice` e `bob` em papéis Moise; Alice envia saudação consultando `play(Ag, role2, _)` | ✅ Aprovado | 02/05/2026 |
 | 4      | consolidação  | Organização própria com `scheme1`, `mission1`, norma `role2 -> mission1` e `org-obedient.asl` | ✅ Aprovado c/ ressalvas | 03/05/2026 |
+| 5      | conceitual    | Quiz da aula: coordenação por artefato, Moise no `.jcm`, leilão em sistema aberto | ✅ 3/3 corretas | 03/05/2026 |
 
 ## Observações do tutor
 
@@ -128,3 +129,9 @@
 - Rubrica: corretude lógica ✅ com ressalva operacional; sintaxe ✅; estrutura ✅; idioms JaCaMo ✅
 - Ponto de atenção: o runtime JaCaMo não finaliza sozinho; use `timeout ...` ou interrompa com `Ctrl+C` depois de observar logs/inspetores
 - Próximo passo recomendado: revisar no Organisation Inspector o estado de `s1`, `mission1`, `goal2` e `goal4`; depois avançar para o próximo passo do Módulo 4 ou para integração no Módulo 5
+
+**Módulo 5 — quiz da aula (03/05/2026)**
+- Q1 (coordenação por artefato): ✅ correto — identificou que estado/protocolo saem dos agentes e passam ao ambiente compartilhado, como em `Termometro.java`
+- Q2 (trecho com `responsible-for` e `scheme`): ✅ correto — reconheceu que a coordenação principal é Moise, por papel/missão/norma
+- Q3 (leilão com participantes dinâmicos): ✅ correto — escolheu organização como abordagem mais robusta para sistema aberto, por permitir atribuir responsabilidades por papel/missão em runtime
+- Próximo passo: exercício intro do Módulo 5, comparando explicitamente coordenação por mensagens, artefato e organização
