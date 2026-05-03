@@ -241,3 +241,71 @@ Se o agente chama `.send`, a coordenação está principalmente nos agentes.
 Se o agente lê `status(...)` e chama `concluir`, a coordenação está principalmente no artefato.
 
 Se o agente recebe obrigações por papel/missão, a coordenação está principalmente na organização.
+
+---
+
+## Exercício de consolidação — integração das três dimensões (03/05/2026)
+
+Arquivos criados:
+
+- `src/ex/mod5-ex2.jcm`
+- `src/org/org_mod5_ex2.xml`
+- `src/env/example/TarefaBoardMod5.java`
+- `src/agt/coordenadora_mod5.asl`
+- `src/agt/executor_mod5.asl`
+
+### O que ficou consolidado
+
+O exercício `mod5_ex2` junta as três dimensões em um único fluxo:
+
+| Dimensão | Arquivo | Responsabilidade |
+|----------|---------|------------------|
+| Moise | `src/org/org_mod5_ex2.xml` | Define `role2` obrigado a cumprir `mission1` |
+| CArtAgO | `src/env/example/TarefaBoardMod5.java` | Guarda `status("pendente")` e `status("concluida")` |
+| Jason | `src/agt/executor_mod5.asl` e `src/agt/coordenadora_mod5.asl` | Executa o goal, percebe o artefato e envia confirmação |
+
+O scheme tem apenas um goal:
+
+```xml
+<goal id="concluir_tarefa"/>
+
+<mission id="mission1" min="1" max="1">
+    <goal id="concluir_tarefa"/>
+</mission>
+```
+
+Isso é suficiente porque não há decomposição em subgoals. O `plan operator="sequence"` só é necessário quando um goal raiz precisa ser quebrado em uma sequência, como no exercício do Módulo 4.
+
+### Fluxo mental
+
+```text
+executor joga role2
+  -> norma obriga role2 a mission1
+  -> mission1 contém concluir_tarefa
+  -> org-obedient.asl gera o goal Jason +!concluir_tarefa
+  -> executor chama concluir no artefato
+  -> TarefaBoardMod5 muda status para "concluida"
+  -> coordenadora percebe status("concluida")
+  -> coordenadora envia confirmacao(concluida)
+  -> executor imprime a confirmação recebida
+```
+
+### Dificuldades observadas
+
+- Um scheme com goal único não precisa de `plan operator="sequence"`.
+- `play(Ag, Role, Grupo)` informa papel e grupo; a missão vem da norma/obrigação, não desse percept.
+- `org-obedient.asl` é o elo que transforma a obrigação Moise em goal Jason.
+- `.send(executor, tell, confirmacao(concluida))` usa `tell` sem aspas e envia uma crença estruturada.
+
+### Validação
+
+```bash
+./gradlew --console=plain classes
+timeout 25s ./gradlew --console=plain run -Pjcm=src/ex/mod5-ex2.jcm
+```
+
+Como o runtime pode abrir a MAS Console, os logs nem sempre aparecem completos no terminal. Use também:
+
+- `http://localhost:3271` para verificar organização, papéis e scheme;
+- `http://localhost:3273` para verificar o artefato e `status("concluida")`;
+- `http://localhost:3272` para verificar crenças e intenções dos agentes.

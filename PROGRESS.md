@@ -1,7 +1,7 @@
 ## Módulo atual
 
 - **Módulo:** 5 — Coordenação: As Três Dimensões
-- **Status:** Quiz da aula concluído ✅ (3/3 corretas — aprovado)
+- **Status:** Exercício de consolidação concluído ✅
 - **Anterior:** Módulo 4 — ✅ Concluído
 
 ## Histórico de exercícios
@@ -25,6 +25,7 @@
 | 4      | consolidação  | Organização própria com `scheme1`, `mission1`, norma `role2 -> mission1` e `org-obedient.asl` | ✅ Aprovado c/ ressalvas | 03/05/2026 |
 | 5      | conceitual    | Quiz da aula: coordenação por artefato, Moise no `.jcm`, leilão em sistema aberto | ✅ 3/3 corretas | 03/05/2026 |
 | 5      | intro         | Comparação entre coordenação por mensagens Jason e por artefato CArtAgO (`TarefaBoard`) | ✅ Aprovado c/ ressalvas | 03/05/2026 |
+| 5      | consolidação  | Integração das três dimensões: Moise obriga `role2`, CArtAgO guarda `status`, Jason envia confirmação | ✅ Aprovado c/ ressalvas | 03/05/2026 |
 
 ## Observações do tutor
 
@@ -146,3 +147,15 @@
 - Ponto de atenção: `.wait(status("pendente"))` lê/aguarda a crença observável sem modificar o artefato; quem modifica o estado é a operação CArtAgO `concluir`
 - Rubrica: corretude lógica ✅; sintaxe ✅; estrutura ✅; idioms JaCaMo ✅ com ressalva didática sobre variáveis e percepts observáveis
 - Próximo passo recomendado: exercício de consolidação do Módulo 5, integrando mensagem, artefato e organização em um fluxo único
+
+**Módulo 5 — exercício de consolidação (03/05/2026)**
+- Objetivo: integrar Moise, CArtAgO e Jason em um único fluxo (`mod5_ex2`): organização define obrigação, artefato mantém estado compartilhado, e mensagem final notifica o executor
+- `src/org/org_mod5_ex2.xml`: organização própria com `group1`, `role1`, `role2`, `scheme1`, `mission1` e norma `role2 -> mission1`; o scheme tem um único goal, `concluir_tarefa`
+- `src/ex/mod5-ex2.jcm`: MAS com `coordenadora` e `executor` focando `w.tarefaBoard`, além de `organisation o` com `responsible-for: s1`
+- `src/env/example/TarefaBoardMod5.java`: artefato CArtAgO com propriedade observável `status("pendente")` e operação `concluir()` que muda para `"concluida"`
+- `src/agt/executor_mod5.asl`: usa `org-obedient.asl`; o goal organizacional `+!concluir_tarefa` aguarda `status("pendente")`, chama `concluir` e depois recebe `confirmacao(concluida)`
+- `src/agt/coordenadora_mod5.asl`: observa `play(Ag, role2, _)`, reage a `status("concluida")` e envia `.send(executor, tell, confirmacao(concluida))`
+- Dificuldade observada: distinguir goal único de scheme vs. goal raiz com `plan operator="sequence"`; para um único goal, `<goal id="concluir_tarefa"/>` é suficiente
+- Dificuldade observada: lembrar que o terceiro argumento de `play(Ag, Role, Grupo)` é grupo, não missão; missão aparece pela norma/obrigação e pelo `org-obedient.asl`
+- Rubrica: corretude lógica ✅; sintaxe ✅; estrutura ✅; idioms JaCaMo ✅ com ressalva operacional sobre logs em MAS Console e uso de `timeout`
+- Próximo passo recomendado: fazer um apanhado do Módulo 5 ou avançar para o Módulo 6 (Gold Miners)

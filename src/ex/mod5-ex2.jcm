@@ -1,0 +1,34 @@
+// Exercício — Módulo 5: Coordenação: As Três Dimensões | Nível: consolidação
+// Objetivo: Consolidar o Módulo 5 juntando as três dimensões: organização decide quem deve agir,
+// artefato guarda o estado compartilhado, e mensagem serve só para notificação.
+// A ideia é parecida com o que você fez no Módulo 4 com papéis/missões, 
+// mas agora a execução concreta da tarefa deve passar por um artefato, como no Módulo 3.
+
+mas mod5_ex2 {
+    agent coordenadora: coordenadora_mod5.asl {
+        focus: w.tarefaBoard
+    }
+    agent executor: executor_mod5.asl {
+        focus: w.tarefaBoard
+    }
+
+    workspace w {
+        artifact tarefaBoard: example.TarefaBoardMod5
+    }
+
+    // Usa uma especificacao propria do exercicio para evitar alterar
+    // src/org/org.xml, que e compartilhado pelo projeto.
+    organisation o: org_mod5_ex2.xml {
+        group g1: group1 {
+            // O grupo precisa ser responsavel pelo scheme para que as
+            // missoes/normas sejam ativadas em runtime.
+            responsible-for: s1
+
+            players: coordenadora role1
+                     executor role2
+        }
+
+        // Instancia do scheme1 definido em org_mod5_ex2.xml.
+        scheme s1: scheme1
+    }
+} 
