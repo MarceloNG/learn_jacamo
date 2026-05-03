@@ -1,6 +1,7 @@
 # Gradle
 .gradle/
 build/
+bin/
 # gradle-wrapper.jar é binário -- se precisar regenerar: gradle wrapper
 gradle/wrapper/gradle-wrapper.jar
 
