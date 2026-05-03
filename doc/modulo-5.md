@@ -189,3 +189,55 @@ Responda sem consultar antes:
 | 1 | Em coordenação por artefato, qual responsabilidade sai dos agentes e passa para o ambiente? | O artefato compartilhado mantém estado/protocolo; agentes apenas operam e percebem, como no `Termometro.java` com `temperatura` e `ajustar(Delta)`. | ✅ Correto | Boa ligação com o Módulo 3: o ambiente passa a centralizar estado e parte do protocolo. |
 | 2 | No trecho com `group`, `responsible-for` e `scheme`, qual dimensão coordena? | O scheme/organização coordena através de papel, missão e norma. | ✅ Correto | Exato: esse é o caso Moise, não mensagem direta nem artefato CArtAgO. |
 | 3 | Em leilão com participantes entrando e saindo dinamicamente, qual abordagem tende a ser mais robusta? | Organização, pois permite definir em runtime qual missão o agente que entra fica responsável por executar. | ✅ Correto | Ótima leitura do trade-off: sistemas abertos combinam bem com papéis, missões e normas. |
+
+---
+
+## Exercício intro — comparação mensagem vs artefato (03/05/2026)
+
+Arquivos criados:
+
+- `doc/modulo-5-ex1.md`
+- `src/ex/mod5-ex1-msg.jcm`
+- `src/agt/coordenador_msg_mod5.asl`
+- `src/agt/executor_msg_mod5.asl`
+- `src/ex/mod5-ex1-art.jcm`
+- `src/agt/coordenador_art_mod5.asl`
+- `src/agt/executor_art_mod5.asl`
+- `src/env/example/TarefaBoard.java`
+
+### O que ficou consolidado
+
+Na versão por mensagens, a coordenação fica nos agentes Jason:
+
+```prolog
+.send(executor, tell, tarefa("Fazer algo importante")).
+```
+
+O coordenador conhece diretamente o agente `executor`, e o executor responde diretamente para quem enviou a tarefa. É simples e ótimo para fluxos pequenos, mas aumenta o acoplamento entre os agentes.
+
+Na versão por artefato, a coordenação passa para o ambiente CArtAgO:
+
+```java
+defineObsProperty("status", "pendente");
+```
+
+Os agentes não precisam trocar mensagens sobre a conclusão. O executor opera o artefato com `concluir`, e a coordenadora percebe a mudança como crença observável:
+
+```prolog
++status(Status) : Status == "concluida"
+```
+
+### Dificuldades observadas
+
+- Em Jason, variável começa com letra maiúscula. `Status` é variável; `s` seria apenas um átomo literal.
+- `.wait(status("pendente"))` é uma ação interna Jason: ela aguarda uma crença/percept ficar disponível, sem modificar o artefato.
+- `concluir` é operação CArtAgO: ela sim muda o estado do artefato.
+- O runtime JaCaMo pode abrir a MAS Console e não finalizar sozinho; para testes curtos, `timeout` continua sendo útil.
+
+### Regra mental
+
+Se o agente chama `.send`, a coordenação está principalmente nos agentes.
+
+Se o agente lê `status(...)` e chama `concluir`, a coordenação está principalmente no artefato.
+
+Se o agente recebe obrigações por papel/missão, a coordenação está principalmente na organização.

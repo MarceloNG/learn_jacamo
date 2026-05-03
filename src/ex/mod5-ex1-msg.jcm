@@ -1,0 +1,14 @@
+// Modulo 5 — Exercicio de introdução - Coordenação: As Três Dimensões
+//
+// Objetivo:
+// Você acabou de consolidar as três dimensões separadas: mensagens Jason, artefatos CArtAgO 
+// e organização Moise. Agora o objetivo é comparar essas escolhas em um caso mínimo, sem ainda
+// implementar um leilão completo.
+// Neste exercício, você vai criar duas versões pequenas do mesmo fluxo: um agente coordenador 
+// pede uma confirmação de tarefa para um agente executor. Primeiro por mensagem direta; depois
+// por artefato compartilhado. A comparação é o ponto central: onde ficou a coordenação em cada versão?
+
+mas mod5_ex1_msg {
+    agent coordenadora: coordenador_msg_mod5.asl
+    agent executor: executor_msg_mod5.asl
+}

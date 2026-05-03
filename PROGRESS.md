@@ -24,6 +24,7 @@
 | 4      | intro         | Agentes `alice` e `bob` em papéis Moise; Alice envia saudação consultando `play(Ag, role2, _)` | ✅ Aprovado | 02/05/2026 |
 | 4      | consolidação  | Organização própria com `scheme1`, `mission1`, norma `role2 -> mission1` e `org-obedient.asl` | ✅ Aprovado c/ ressalvas | 03/05/2026 |
 | 5      | conceitual    | Quiz da aula: coordenação por artefato, Moise no `.jcm`, leilão em sistema aberto | ✅ 3/3 corretas | 03/05/2026 |
+| 5      | intro         | Comparação entre coordenação por mensagens Jason e por artefato CArtAgO (`TarefaBoard`) | ✅ Aprovado c/ ressalvas | 03/05/2026 |
 
 ## Observações do tutor
 
@@ -135,3 +136,13 @@
 - Q2 (trecho com `responsible-for` e `scheme`): ✅ correto — reconheceu que a coordenação principal é Moise, por papel/missão/norma
 - Q3 (leilão com participantes dinâmicos): ✅ correto — escolheu organização como abordagem mais robusta para sistema aberto, por permitir atribuir responsabilidades por papel/missão em runtime
 - Próximo passo: exercício intro do Módulo 5, comparando explicitamente coordenação por mensagens, artefato e organização
+
+**Módulo 5 — exercício intro (03/05/2026)**
+- Objetivo: implementar o mesmo fluxo de coordenação em duas versões mínimas: por mensagem direta Jason (`mod5_ex1_msg`) e por artefato compartilhado CArtAgO (`mod5_ex1_art`)
+- `src/ex/mod5-ex1-msg.jcm`: MAS com `coordenadora` e `executor`; a coordenadora envia `tarefa(...)` por `.send`, e o executor responde com `concluida(...)`
+- `src/ex/mod5-ex1-art.jcm`: MAS com os mesmos papéis de agentes, mas a coordenação passa pelo artefato `w.tarefaBoard`
+- `src/env/example/TarefaBoard.java`: artefato criado com propriedade observável `status`, iniciando em `"pendente"`, e operação `concluir()` que muda para `"concluida"`
+- Ponto de atenção: em Jason, variáveis começam com maiúscula; `s` é átomo literal, enquanto `Status` é variável
+- Ponto de atenção: `.wait(status("pendente"))` lê/aguarda a crença observável sem modificar o artefato; quem modifica o estado é a operação CArtAgO `concluir`
+- Rubrica: corretude lógica ✅; sintaxe ✅; estrutura ✅; idioms JaCaMo ✅ com ressalva didática sobre variáveis e percepts observáveis
+- Próximo passo recomendado: exercício de consolidação do Módulo 5, integrando mensagem, artefato e organização em um fluxo único
