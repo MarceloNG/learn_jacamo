@@ -198,3 +198,15 @@ Responda sem consultar antes:
 3. No exercício (f), como o líder sabe que já recebeu a pontuação de **todos** os mineradores?
 
 > Use `/aula 6` no chat para discutir as respostas com o tutor antes de ir para os exercícios.
+
+---
+
+## Respostas de auto-verificação (04/05/2026)
+
+| # | Pergunta | Resposta do aluno | Status | Feedback |
+|---|----------|-------------------|--------|----------|
+| 1 | Diferença entre minerador pró-ativo e reativo | Pró-ativo age por metas próprias, como `!explorar`; reativo reage a percepts, como `+gold(X,Y)`. | ✅ Correto | Exato: no Gold Miners o mesmo agente combina os dois modos. |
+| 2 | O que evita o plano com `not .desire(pegar_ouro(_, _))` e `.drop_desire(explorar)` | Evita duplicar a intenção de pegar ouro e abandona a exploração para não tentar fazer duas coisas incompatíveis. | ✅ Correto | Perfeito: isso é gestão explícita de intenções BDI. |
+| 3 | Por que `-+score(NS)` é melhor que `+score(NS)` | `-+` substitui a crença do mesmo functor e evita precisar remover manualmente. | ⚠️ Parcial | Correto, mas o motivo principal é manter uma única crença `score(...)`; só `+score(NS)` acumularia `score(1)`, `score(2)`, etc. |
+
+Resultado: quiz aprovado ✅. Próximo passo recomendado: `/exercicio 6 intro`.

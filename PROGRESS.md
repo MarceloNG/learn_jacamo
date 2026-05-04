@@ -1,8 +1,8 @@
 ## Módulo atual
 
-- **Módulo:** 5 — Coordenação: As Três Dimensões
-- **Status:** Exercício de consolidação concluído ✅
-- **Anterior:** Módulo 4 — ✅ Concluído
+- **Módulo:** 6 — Exemplo Avançado: Gold Miners
+- **Status:** Quiz da aula concluído ✅ (2/3 corretas, 1 parcial — aprovado)
+- **Anterior:** Módulo 5 — ✅ Concluído
 
 ## Histórico de exercícios
 
@@ -26,6 +26,7 @@
 | 5      | conceitual    | Quiz da aula: coordenação por artefato, Moise no `.jcm`, leilão em sistema aberto | ✅ 3/3 corretas | 03/05/2026 |
 | 5      | intro         | Comparação entre coordenação por mensagens Jason e por artefato CArtAgO (`TarefaBoard`) | ✅ Aprovado c/ ressalvas | 03/05/2026 |
 | 5      | consolidação  | Integração das três dimensões: Moise obriga `role2`, CArtAgO guarda `status`, Jason envia confirmação | ✅ Aprovado c/ ressalvas | 03/05/2026 |
+| 6      | conceitual    | Quiz da aula: pró-ativo vs reativo, gestão de intenções, atualização de `score` | ✅ 2/3 corretas; Q3 parcial | 04/05/2026 |
 
 ## Observações do tutor
 
@@ -159,3 +160,9 @@
 - Dificuldade observada: lembrar que o terceiro argumento de `play(Ag, Role, Grupo)` é grupo, não missão; missão aparece pela norma/obrigação e pelo `org-obedient.asl`
 - Rubrica: corretude lógica ✅; sintaxe ✅; estrutura ✅; idioms JaCaMo ✅ com ressalva operacional sobre logs em MAS Console e uso de `timeout`
 - Próximo passo recomendado: fazer um apanhado do Módulo 5 ou avançar para o Módulo 6 (Gold Miners)
+
+**Módulo 6 — quiz da aula (04/05/2026)**
+- Q1 (minerador pró-ativo vs reativo): ✅ correto — identificou que o pró-ativo age por metas próprias, como `!explorar`, e o reativo responde a percepts, como `+gold(X,Y)`
+- Q2 (gestão de intenções com `.desire` e `.drop_desire`): ✅ correto — explicou que o plano evita duplicar a intenção de pegar ouro e abandona a exploração antes de perseguir o novo objetivo
+- Q3 (`-+score(NS)` vs `+score(NS)`): ⚠️ parcial — entendeu que `-+` substitui a crença, mas faltou explicitar o motivo principal: evitar múltiplas crenças `score(...)` inconsistentes no belief base
+- Próximo passo: exercício intro do Módulo 6, praticando um recorte pequeno do padrão Gold Miners antes de baixar/rodar o exemplo completo
